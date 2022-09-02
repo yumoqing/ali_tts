@@ -7,8 +7,9 @@ import base64
 import hmac
 import uuid
 import json
-from urllib.parse import urlencode
+from urllib import parse
 import time
+import requests
 import ssl
 from wsgiref.handlers import format_date_time
 from datetime import datetime
@@ -23,6 +24,23 @@ from unitts.voice import Voice
 
 import tempfile
 import wave
+
+Voices = [
+	Voice('aiqi','Aiqi', ['zh_CN', 'en_US'], '0', 24'),
+	Voice('aicheng','Aicheng', ['zh_CN'], 'en_US', '1', 24'),
+	Voice('aijia','Aijia', ['zh_CN', 'en_US'], '0', 24'),
+	Voice('siqi','sijia', ['zh_CN', 'en_US'], '0', 24'),
+	Voice('sijia','Sijia', ['zh_CN', 'en_US'], '0', 24'),
+	Voice('mashu','mashu', ['zh_CN', 'en_US'], '1', 14'),
+	Voice('yueer','Yueer', ['zh_CN', 'en_US'], '0', 14'),
+	Voice('nuoxi','Nuoxi', ['zh_CN', 'en_US'], '0', 24'),
+	Voice('aida','Aida', ['zh_CN', 'en_US'], '1', 24'),
+	Voice('sicheng','Sicheng', ['zh_CN', 'en_US'], '1', 24'),
+	Voice('ninger','Ninger', ['zh_CN', 'en_US'], '0', 24'),
+	Voice('xiaoyun','Xiaoyun', ['zh_CN', 'en_US'], '0', 24'),
+	Voice('xiaogang','Xiaogang', ['zh_CN', 'en_US'], '1', 24'),
+	Voice('ruilin','Ruilin', ['zh_CN', 'en_US'], '0', 24'),
+]
 
 def wavhead(wavfile, nchannels=1, framerate=16000):
 	wf = wave.open(wavfile, 'wb')
@@ -112,11 +130,11 @@ class AliTTSDriver(BaseDriver):
 		self.APPID = app_info.get('appid')
 		self.APIKey = app_info.get('appkey')
 		self.APISecret = app_info.get('appsecret')
-		self.token, self.exptime = AccessToekn.create_token(self.APPID, \
+		self.token, self.exptime = AccessToken.create_token(self.APIKey, \
 										self.APISecret)
 		self.player = AudioPlayer(on_stop=self.speak_finish)
 		self.params = {
-			"appkey":self.APIKey,
+			"appkey":self.APPID,
 			"token":self.token,
 			"format":"wav",
 			"sample_rate":"16000",
@@ -130,18 +148,16 @@ class AliTTSDriver(BaseDriver):
 		}
 
 	def geturl(self):
-		retunr 'https://' + self.urls.get('beijing')
+		return 'https://' + self.urls.get('beijing')
 
 	def ali_tts(self, text, params = {}):
-		data = self.text_encode(text)
 		d = self.params.copy()
 		d.update({
 			'text':text
 		})
 		# d.update(params)
 		url = self.geturl()
-		hc = Http_Client()
-		resp = hc.post(usr, params=d)
+		resp = requests.post(url, params=d)
 		ct = resp.headers.get('Content-Type')
 		if not ct or ct == 'application/json':
 			print('Error:', resp.text)
