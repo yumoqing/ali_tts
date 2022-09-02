@@ -26,20 +26,20 @@ import tempfile
 import wave
 
 Voices = [
-	Voice('aiqi','Aiqi', ['zh_CN', 'en_US'], '0', 24'),
-	Voice('aicheng','Aicheng', ['zh_CN'], 'en_US', '1', 24'),
-	Voice('aijia','Aijia', ['zh_CN', 'en_US'], '0', 24'),
-	Voice('siqi','sijia', ['zh_CN', 'en_US'], '0', 24'),
-	Voice('sijia','Sijia', ['zh_CN', 'en_US'], '0', 24'),
-	Voice('mashu','mashu', ['zh_CN', 'en_US'], '1', 14'),
-	Voice('yueer','Yueer', ['zh_CN', 'en_US'], '0', 14'),
-	Voice('nuoxi','Nuoxi', ['zh_CN', 'en_US'], '0', 24'),
-	Voice('aida','Aida', ['zh_CN', 'en_US'], '1', 24'),
-	Voice('sicheng','Sicheng', ['zh_CN', 'en_US'], '1', 24'),
-	Voice('ninger','Ninger', ['zh_CN', 'en_US'], '0', 24'),
-	Voice('xiaoyun','Xiaoyun', ['zh_CN', 'en_US'], '0', 24'),
-	Voice('xiaogang','Xiaogang', ['zh_CN', 'en_US'], '1', 24'),
-	Voice('ruilin','Ruilin', ['zh_CN', 'en_US'], '0', 24'),
+	Voice('aiqi','Aiqi', ['zh_CN', 'en_US'], '0', 24),
+	Voice('aicheng','Aicheng', ['zh_CN', 'en_US'], '1', 24),
+	Voice('aijia','Aijia', ['zh_CN', 'en_US'], '0', 24),
+	Voice('siqi','sijia', ['zh_CN', 'en_US'], '0', 24),
+	Voice('sijia','Sijia', ['zh_CN', 'en_US'], '0', 24),
+	Voice('mashu','mashu', ['zh_CN', 'en_US'], '1', 14),
+	Voice('yueer','Yueer', ['zh_CN', 'en_US'], '0', 14),
+	Voice('nuoxi','Nuoxi', ['zh_CN', 'en_US'], '0', 24),
+	Voice('aida','Aida', ['zh_CN', 'en_US'], '1', 24),
+	Voice('sicheng','Sicheng', ['zh_CN', 'en_US'], '1', 24),
+	Voice('ninger','Ninger', ['zh_CN', 'en_US'], '0', 24),
+	Voice('xiaoyun','Xiaoyun', ['zh_CN', 'en_US'], '0', 24),
+	Voice('xiaogang','Xiaogang', ['zh_CN', 'en_US'], '1', 24),
+	Voice('ruilin','Ruilin', ['zh_CN', 'en_US'], '0', 24),
 ]
 
 def wavhead(wavfile, nchannels=1, framerate=16000):
