@@ -1,6 +1,5 @@
 import os
 from random import randint
-import websocket
 import datetime
 import hashlib
 import base64
